@@ -15,8 +15,12 @@ import os
 import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
+with open(BASE_DIR + '/server/config.json', 'r') as config:
+    obj = json.load(config)
+SECRET_KEY = obj["API_KEY"]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
